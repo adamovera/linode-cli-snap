@@ -1,14 +1,19 @@
 ---
 name: linode-cli
+title: Linode CLI
+base: core24
 version: "5.59.0"
-summary: "Linode CLI"
+summary: "Control your Akamai Cloud account from your terminal."
 description: |
-  Manage your Akamai Cloud account from your terminal.
-  Invoke with `linode-cli`, `linode`, or `lin`.
+  The Linode CLI puts the power of Akamai Cloud at your fingertips.
+  Provision, configure, and tear down Linode instances, manage
+  block and object storage, deploy Kubernetes clusters, configure Cloud
+  Firewalls, administer DNS records, and more without ever leaving the shell.
+
+  Invoke with `linode-cli`, `linode`, or simply `lin`.
 
 grade: stable
 confinement: strict
-base: core24
 
 icon: icon.png
 
@@ -22,9 +27,9 @@ parts:
 apps:
   linode-cli:
     command: bin/linode-cli
-    plugs:
-      - home
-      - network
     aliases:
       - linode
       - lin
+    plugs:
+      - home
+      - network
