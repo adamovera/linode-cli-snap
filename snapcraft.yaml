@@ -1,0 +1,10 @@
+name: linode-cli
+version: "5.59.0"
+summary: "Linode CLI"
+description: |
+  linode-cli allows you to manage your Linode account from your terminal. Create, manage, and delete Linode instances, domains, and more.
+
+grade: stable
+confinement: strict
+
+base: core24
