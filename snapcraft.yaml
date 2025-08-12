@@ -1,28 +1,41 @@
 ---
 name: linode-cli
 title: Linode CLI
-base: core24
-version: "5.59.0"
-summary: "Control your Akamai Cloud account from your terminal."
+version: "5.61.0"
+license: BSD-3-Clause
+summary: "An easy way to interact with Akamai Cloud through a command-line interface."
 description: |
-  The Linode CLI puts the power of Akamai Cloud at your fingertips.
-  Provision, configure, and tear down Linode instances, manage
-  block and object storage, deploy Kubernetes clusters, configure Cloud
-  Firewalls, administer DNS records, and more without ever leaving the shell.
+  The [Linode CLI](https://github.com/linode/linode-cli) is a wrapper around the [Linode API](https://techdocs.akamai.com/linode-api/reference/api), which gives you the ability to manage your ​Akamai​ Cloud Computing account from the command line. Almost any task that can be done through Cloud Manager can also be performed through the CLI.
 
+  ## Features
+  - **Accelerate common tasks.** Running common tasks is trivial with the CLI. Create Linodes and NodeBalancers, and attach block or object storage volumes without leaving your terminal.
+  - **Customizable output.** The CLI prints easily readable output by default. You can also specify which fields are returned by the CLI and request JSON responses.
+  - **Easy scripting.** Everything you can do with the Cloud Manager can be done through the CLI. The CLI has an easy-to-use interface that makes it perfect for scripting.
+
+  ## Availability
+  The CLI can be used across [all regions](https://www.linode.com/global-infrastructure/).
+
+  ## Pricing
+  The CLI is provided free of charge to all customers.
+
+  ## Usage
   Invoke with `linode-cli`, `linode`, or simply `lin`.
-
+base: core24
 grade: stable
 confinement: strict
-
+source-code:
+  - https://github.com/linode/linode-cli
+  - https://github.com/adamovera/linode-cli-snap
+contact:
+  - https://www.linode.com/support/
+  - https://adamovera.com/contact
+website:
+  - https://techdocs.akamai.com/cloud-computing/docs/cli
+  - https://github.com/linode/linode-cli
+issues:
+  - https://github.com/linode/linode-cli/issues
+  - https://github.com/adamovera/linode-cli-snap/issues
 icon: icon.png
-
-parts:
-  linode-cli:
-    plugin: python
-    source: .
-    python-packages:
-      - linode-cli==$SNAPCRAFT_PROJECT_VERSION
 
 apps:
   linode-cli:
@@ -33,3 +46,10 @@ apps:
     plugs:
       - home
       - network
+
+parts:
+  linode-cli:
+    plugin: python
+    source: .
+    python-packages:
+      - linode-cli==$SNAPCRAFT_PROJECT_VERSION

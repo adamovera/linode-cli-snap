@@ -172,3 +172,13 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# --------------------
+# Snapcraft build artifacts
+# --------------------
+*.snap
+prime/
+stage/
+parts/
+.snapcraft/
