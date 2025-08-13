@@ -2,7 +2,7 @@
 
 [![Snap Store](https://snapcraft.io/linode-cli/badge.svg)](https://snapcraft.io/linode-cli)
 
-The [Linode CLI](https://github.com/linode/linode-cli) is a wrapper around the [Linode API](https://techdocs.akamai.com/linode-api/reference/api), which gives you the ability to manage your [Akamai Cloud Computing](https://www.linode.com) account from the command line. Almost any task that can be done through Cloud Manager can also be performed through the CLI.
+The [Linode CLI](https://github.com/linode/linode-cli) is a wrapper around the [Linode API](https://techdocs.akamai.com/linode-api/reference/api), which gives you the ability to manage your [Akamai Cloud](https://www.linode.com) account from the command line. Almost any task that can be done through Cloud Manager can also be performed through the CLI.
 
 > **Note:** This repository maintains the Snap package for the Linode CLI.
 > The CLI itself is developed and maintained by the Linode engineering team.
@@ -55,7 +55,7 @@ The CLI is provided free of charge to all Akamai Cloud customers.
 ## 📄 License
 
 - Upstream Linode CLI: [BSD-3-Clause License](https://github.com/linode/linode-cli/blob/main/LICENSE)
-- Snap packaging: BSD-3-Clause
+- Snap packaging: MIT
 
 ---
 
