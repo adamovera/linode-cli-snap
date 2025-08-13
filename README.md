@@ -55,7 +55,7 @@ The CLI is provided free of charge to all Akamai Cloud customers.
 ## 📄 License
 
 - Upstream Linode CLI: [BSD-3-Clause License](https://github.com/linode/linode-cli/blob/main/LICENSE)
-- Snap packaging: MIT
+- Snap Package: MIT
 
 ---
 
