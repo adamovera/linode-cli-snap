@@ -37,6 +37,19 @@ issues:
   - https://github.com/adamovera/linode-cli-snap/issues
 icon: icon.png
 
+platforms:
+  amd64:
+    build-on:
+      - amd64
+    build-for:
+      - amd64
+  arm64:
+    build-on:
+      - amd64
+      - arm64
+    build-for:
+      - arm64
+
 apps:
   linode-cli:
     command: bin/linode-cli
