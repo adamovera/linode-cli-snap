@@ -71,12 +71,14 @@ jobs:
             echo "needs_bump=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Update snapcraft.yaml version
+      - name: Update snapcraft.yaml version (minimal diff)
         if: steps.decide.outputs.needs_bump == 'true'
         run: |
           NEW="${{ steps.upstream.outputs.latest }}"
-          yq -i ".version = \"${NEW}\"" snapcraft.yaml
-          echo "Updated version to: $(yq -r '.version' snapcraft.yaml)"
+          # Replace only the top-level version line; preserve rest of file exactly.
+          sed -i -E 's/^version:[[:space:]]*".*"/version: "'"$NEW"'"/' snapcraft.yaml \
+            || sed -i -E 's/^version:[[:space:]]*.*/version: "'"$NEW"'"/' snapcraft.yaml
+          echo "Updated version to: $(grep -E '^version:' snapcraft.yaml)"
 
       - name: Create PR to develop
         if: steps.decide.outputs.needs_bump == 'true'
