@@ -1,0 +1,103 @@
+name: Bump linode-cli version (Snapcraft)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 9 * * *"   # daily @ 09:17 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  PACKAGE_NAME: linode-cli
+  UPSTREAM_REPO: linode/linode-cli   # fallback if PyPI unavailable
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install tools (jq, yq)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+          sudo wget -qO /usr/local/bin/yq \
+            https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+
+      - name: Read current snapcraft version
+        id: current
+        run: |
+          CURR=$(yq -r '.version' snapcraft.yaml)
+          echo "current=$CURR" >> "$GITHUB_OUTPUT"
+
+      - name: Get latest version from PyPI (fallback to GitHub releases)
+        id: upstream
+        run: |
+          set -e
+          # Try PyPI first
+          PYPI=$(curl -fsSL "https://pypi.org/pypi/${{ env.PACKAGE_NAME }}/json" \
+                 | jq -r '.info.version' || true)
+
+          if [ -n "$PYPI" ] && [ "$PYPI" != "null" ]; then
+            LATEST="$PYPI"
+            TAG="v$PYPI"
+          else
+            # Fallback: GitHub Releases/tag
+            TAG=$(curl -fsSL "https://api.github.com/repos/${{ env.UPSTREAM_REPO }}/releases/latest" \
+                  | jq -r '.tag_name' || true)
+            if [ -z "$TAG" ] || [ "$TAG" = "null" ]; then
+              TAG=$(curl -fsSL "https://api.github.com/repos/${{ env.UPSTREAM_REPO }}/tags?per_page=1" \
+                    | jq -r '.[0].name')
+            fi
+            LATEST="${TAG#v}"
+          fi
+
+          echo "tag=$TAG"       >> "$GITHUB_OUTPUT"
+          echo "latest=$LATEST" >> "$GITHUB_OUTPUT"
+
+      - name: Decide if bump is needed
+        id: decide
+        run: |
+          if [ "${{ steps.upstream.outputs.latest }}" != "${{ steps.current.outputs.current }}" ]; then
+            echo "needs_bump=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "needs_bump=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Update snapcraft.yaml version
+        if: steps.decide.outputs.needs_bump == 'true'
+        run: |
+          NEW="${{ steps.upstream.outputs.latest }}"
+          yq -i ".version = \"${NEW}\"" snapcraft.yaml
+          echo "Updated version to: $(yq -r '.version' snapcraft.yaml)"
+
+      - name: Create PR to develop
+        if: steps.decide.outputs.needs_bump == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          base: develop     # 👈 change from 'main' to 'develop'
+          branch: bot/bump-${{ env.PACKAGE_NAME }}-v${{ steps.upstream.outputs.latest }}
+          title: "chore: bump ${{ env.PACKAGE_NAME }} to v${{ steps.upstream.outputs.latest }}"
+          commit-message: "chore: bump ${{ env.PACKAGE_NAME }} to v${{ steps.upstream.outputs.latest }}"
+          body: |
+            Test run — bump Snapcraft project `version:` to **${{ steps.upstream.outputs.latest }}**.
+
+            - Current: `${{ steps.current.outputs.current }}`
+            - Upstream tag: `${{ steps.upstream.outputs.tag }}`
+            - Updated: `version: ${{ steps.upstream.outputs.latest }}`
+
+            Because `python-packages` uses `${{ env.PACKAGE_NAME }}==$SNAPCRAFT_PROJECT_VERSION`,
+      the build will pull the matching PyPI release automatically.
+
+            **This PR is for testing only and can be safely closed.**
+          labels: |
+            automation
+            dependencies
+          delete-branch: true
