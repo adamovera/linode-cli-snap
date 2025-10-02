@@ -1,7 +1,7 @@
 ---
 name: linode-cli
 title: Linode CLI
-version: "5.61.0"
+version: "5.63.0"
 license: MIT
 summary: "An easy way to interact with Akamai Cloud through a command-line interface."
 description: |
