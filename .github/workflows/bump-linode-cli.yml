@@ -93,8 +93,7 @@ jobs:
             - Upstream tag: `${{ steps.upstream.outputs.tag }}`
             - Updated: `version: ${{ steps.upstream.outputs.latest }}`
 
-            Because `python-packages` uses `${{ env.PACKAGE_NAME }}==$SNAPCRAFT_PROJECT_VERSION`,
-      the build will pull the matching PyPI release automatically.
+            Because `python-packages` uses `${{ env.PACKAGE_NAME }}==$SNAPCRAFT_PROJECT_VERSION`, the build will pull the matching PyPI release automatically.
 
             **This PR is for testing only and can be safely closed.**
           labels: |
