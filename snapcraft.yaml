@@ -1,7 +1,7 @@
 ---
 name: linode-cli
 title: Linode CLI
-version: "5.61.0"
+version: "5.63.0"
 license: MIT
 summary: "An easy way to interact with Akamai Cloud through a command-line interface."
 description: |
@@ -36,7 +36,6 @@ issues:
   - https://github.com/linode/linode-cli/issues
   - https://github.com/adamovera/linode-cli-snap/issues
 icon: icon.png
-
 platforms:
   amd64:
     build-on: [amd64]
@@ -44,7 +43,6 @@ platforms:
   arm64:
     build-on: [arm64]
     build-for: [arm64]
-
 apps:
   linode-cli:
     command: bin/linode-cli
@@ -54,7 +52,6 @@ apps:
     plugs:
       - home
       - network
-
 parts:
   linode-cli:
     plugin: python
