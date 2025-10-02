@@ -182,3 +182,6 @@ prime/
 stage/
 parts/
 .snapcraft/
+
+# Snapcraft build logs
+snapcraft-*.txt
