@@ -80,25 +80,23 @@ jobs:
             || sed -i -E 's/^version:[[:space:]]*.*/version: "'"$NEW"'"/' snapcraft.yaml
           echo "Updated version to: $(grep -E '^version:' snapcraft.yaml)"
 
-      - name: Create PR to develop
+      - name: Create PR to main
         if: steps.decide.outputs.needs_bump == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          base: develop     # 👈 change from 'main' to 'develop'
+          base: main
           branch: bot/bump-${{ env.PACKAGE_NAME }}-v${{ steps.upstream.outputs.latest }}
           title: "chore: bump ${{ env.PACKAGE_NAME }} to v${{ steps.upstream.outputs.latest }}"
           commit-message: "chore: bump ${{ env.PACKAGE_NAME }} to v${{ steps.upstream.outputs.latest }}"
           body: |
-            Test run — bump Snapcraft project `version:` to **${{ steps.upstream.outputs.latest }}**.
+            Bumps Snapcraft project `version:` to **${{ steps.upstream.outputs.latest }}**.
 
             - Current: `${{ steps.current.outputs.current }}`
             - Upstream tag: `${{ steps.upstream.outputs.tag }}`
             - Updated: `version: ${{ steps.upstream.outputs.latest }}`
 
-            Because `python-packages` uses `${{ env.PACKAGE_NAME }}==$SNAPCRAFT_PROJECT_VERSION`, the build will pull the matching PyPI release automatically.
-
-            **This PR is for testing only and can be safely closed.**
+            Because `python-packages` uses `${{ env.PACKAGE_NAME }}==$SNAPCRAFT_PROJECT_VERSION`,
+            the build will pull the matching PyPI release automatically.
           labels: |
             automation
-            dependencies
           delete-branch: true
