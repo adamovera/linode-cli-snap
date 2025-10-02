@@ -1,4 +1,4 @@
-name: Bump linode-cli version (Snapcraft)
+name: Bump linode-cli Version (Snapcraft)
 
 on:
   workflow_dispatch:
