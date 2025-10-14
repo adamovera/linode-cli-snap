@@ -46,7 +46,8 @@ snap refresh linode-cli
 ## ✨ Features
 
 - **Compute** - Create, update, and delete Linodes. Manage instance types, images, backups, and power states.
-- **Networking** - Manage ip addressed, VLANs, VPCs, Firewalls, and DNS zones and records.
+- **Networking** - Manage ip addressed, VLANs, VPCs, and Cloud Firewalls.
+- **Domains** – Create and manage DNS zones and records. 
 - **Storage** - Provision and manage Block Storage volumes and Object Storage buckets.
 - **Load Balancing** - Configure and monitor NodeBalancers and backend nodes for high availability.
 - **Databases** - Deploy and maintain Managed Databases for MySQL and PostgreSQL.
