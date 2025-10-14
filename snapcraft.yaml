@@ -8,7 +8,7 @@ description: |
   The [Linode CLI](https://github.com/linode/linode-cli) provides full command-line access to your [Akamai Cloud](https://www.linode.com) account through the Linode API. Almost any action available in Cloud Manager can also be performed directly from the terminal.
 
   ## Features
-  - **Compute**: Create, update, and delete Linodes, manage instance types, images, backups, and power states.
+  - **Compute**: Create, update, and delete Linodes. Manage instance types, images, backups, and power states.
   - **Networking**: Manage IP addresses, VLANs, VPCs, Firewalls, and DNS zones and records.
   - **Storage**: Provision and manage Block Storage volumes and Object Storage buckets.
   - **Load Balancing**: Configure and monitor NodeBalancers and backend nodes for high availability.
