@@ -3,37 +3,57 @@ name: linode-cli
 title: Linode CLI
 version: "5.63.0"
 license: MIT
-summary: "An easy way to interact with Akamai Cloud through a command-line interface."
+summary: "Manage your Akamai Cloud resources from the terminal."
 description: |
-  The [Linode CLI](https://github.com/linode/linode-cli) is a wrapper around the [Linode API](https://techdocs.akamai.com/linode-api/reference/api), which gives you the ability to manage your [Akamai Cloud](https://www.linode.com) account from the command line. Almost any task that can be done through Cloud Manager can also be performed through the CLI.
+  The [Linode CLI](https://github.com/linode/linode-cli) provides full command-line access to your [Akamai Cloud](https://www.linode.com) account through the Linode API. Almost any action available in Cloud Manager can also be performed directly from the terminal.
 
   ## Features
-  - **Accelerate common tasks.** Running common tasks is trivial with the CLI. Create Linodes and NodeBalancers, and attach block or object storage volumes without leaving your terminal.
-  - **Customizable output.** The CLI prints easily readable output by default. You can also specify which fields are returned by the CLI and request JSON responses.
-  - **Easy scripting.** Everything you can do with the Cloud Manager can be done through the CLI. The CLI has an easy-to-use interface that makes it perfect for scripting.
+  - **Compute**: Create, update, and delete Linodes, manage instance types, images, backups, and power states.
+  - **Networking**: Manage IP addresses, VLANs, VPCs, Firewalls, and DNS zones and records.
+  - **Storage**: Provision and manage Block Storage volumes and Object Storage buckets.
+  - **Load Balancing**: Configure and monitor NodeBalancers and backend nodes for high availability.
+  - **Databases**: Deploy and maintain Managed Databases for MySQL and PostgreSQL.
+  - **Kubernetes**: Create, update, and manage Linode Kubernetes Engine (LKE) clusters.
+  - **Events**: List and inspect system and account events for auditing and automation.
+  - **Account**: View billing info, manage users, SSH keys, API tokens, and account settings.
+  - **Support**: Open and track support tickets.
+  - **Automation**: Execute StackScripts, upload custom images, and integrate with CI/CD workflows.
 
   ## Availability
-  The CLI can be used across [all regions](https://www.linode.com/global-infrastructure/).
-
-  ## Pricing
-  The CLI is provided free of charge to all customers.
+  The Linode CLI is available for both **amd64** and **arm64** architectures and can be used across [all Akamai Cloud regions](https://www.linode.com/global-infrastructure/).
 
   ## Usage
-  Invoke with `linode-cli`, `linode`, or simply `lin`.
+  Installation:
+
+  ```bash
+  snap install linode-cli
+  ```
+
+  Configuration:
+
+  ```bash
+  linode-cli configure
+  ```
+
+  Help:
+
+  ```bash
+  linode-cli --help
+  ```
 base: core24
 grade: stable
 confinement: strict
 source-code:
-  - https://github.com/linode/linode-cli
+  # - https://github.com/linode/linode-cli
   - https://github.com/adamovera/linode-cli-snap
 contact:
-  - https://www.linode.com/support/
-  - https://adamovera.com/contact
+  # - https://www.linode.com/support/
+  - mail@adamovera.com
 website:
-  - https://techdocs.akamai.com/cloud-computing/docs/cli
-  - https://github.com/linode/linode-cli
+  # - https://techdocs.akamai.com/cloud-computing/docs/cli
+  - https://adamovera.com
 issues:
-  - https://github.com/linode/linode-cli/issues
+  # - https://github.com/linode/linode-cli/issues
   - https://github.com/adamovera/linode-cli-snap/issues
 icon: icon.png
 

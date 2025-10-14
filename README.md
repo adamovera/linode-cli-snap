@@ -1,11 +1,10 @@
-# Linode CLI (Snap Package)
+# Linode CLI - Snap Package
 
 [![Snap Store](https://snapcraft.io/linode-cli/badge.svg)](https://snapcraft.io/linode-cli)
 
-The [Linode CLI](https://github.com/linode/linode-cli) is a wrapper around the [Linode API](https://techdocs.akamai.com/linode-api/reference/api), which gives you the ability to manage your [Akamai Cloud](https://www.linode.com) account from the command line. Almost any task that can be done through Cloud Manager can also be performed through the CLI.
+A Snap package for the **Linode CLI**, providing an easy way to manage your Akamai Cloud resources from the terminal.
 
-> **Note:** This repository maintains the Snap package for the Linode CLI.
-> The CLI itself is developed and maintained by the Linode engineering team.
+> **Scope:** This repository maintains the **Snap packaging** only. The Linode CLI itself is developed and maintained by the Linode engineering team.
 
 ---
 
@@ -16,46 +15,59 @@ Install from the Snap Store:
 ```bash
 sudo snap install linode-cli
 ```
+---
 
-Invoke with:
+## 🚀 Quick Start
+
+Configure your preferences and connect your Akamai Cloud account:
 
 ```bash
-linode-cli
+linode-cli configure
 ```
 
-Or use one of its aliases (if enabled):
+View available commands:
 
 ```bash
-linode
-lin
+linode-cli --help
+```
+
+---
+
+## 🔄 Update
+
+The Snap tracks upstream Linode CLI releases. To update:
+
+```bash
+sudo snap refresh linode-cli
 ```
 
 ---
 
 ## ✨ Features
 
-- **Accelerate common tasks** – Create Linodes and NodeBalancers, attach block or object storage volumes, and more without leaving your terminal.
-- **Customizable output** – Choose which fields are returned and request JSON responses.
-- **Easy scripting** – Everything available in Cloud Manager can be scripted from the CLI.
+- **Compute**: Create, update, and delete Linodes, manage instance types, images, backups, and power states.
+- **Networking**: Manage IP addresses, VLANs, VPCs, Firewalls, and DNS zones and records.
+- **Storage**: Provision and manage Block Storage volumes and Object Storage buckets.
+- **Load Balancing**: Configure and monitor NodeBalancers and backend nodes for high availability.
+- **Databases**: Deploy and maintain Managed Databases for MySQL and PostgreSQL.
+- **Kubernetes**: Create, update, and manage Linode Kubernetes Engine (LKE) clusters.
+- **Events**: List and inspect system and account events for auditing and automation.
+- **Account**: View billing info, manage users, SSH keys, API tokens, and account settings.
+- **Support**: Open and track support tickets.
+- **Automation**: Execute StackScripts, upload custom images, and integrate with CI/CD workflows.
+
+---
+
+## 🧩 Architectures & Requirements
+
+- Supported Architectures: **amd64** and **arm64** (Snap **core24** base).
+- Confinement: **strict** (standard store sandbox).
 
 ---
 
 ## 🌍 Availability
 
-The Linode CLI can be used across [all regions](https://www.linode.com/global-infrastructure/).
-
----
-
-## 💵 Pricing
-
-The CLI is provided free of charge to all Akamai Cloud customers.
-
----
-
-## 📄 License
-
-- Upstream Linode CLI: [BSD-3-Clause License](https://github.com/linode/linode-cli/blob/main/LICENSE)
-- Snap Package: MIT
+The Linode CLI can be used across [all Akamai Cloud regions](https://www.linode.com/global-infrastructure/).
 
 ---
 
@@ -64,5 +76,12 @@ The CLI is provided free of charge to all Akamai Cloud customers.
 - **CLI Documentation:** https://techdocs.akamai.com/cloud-computing/docs/cli
 - **Upstream Source:** https://github.com/linode/linode-cli
 - **Snap Store Page:** https://snapcraft.io/linode-cli
-- **Report CLI Issues (Upstream):** https://github.com/linode/linode-cli/issues
+- **Report Linode CLI Issues (Upstream):** https://github.com/linode/linode-cli/issues
 - **Report Snap Packaging Issues:** https://github.com/adamovera/linode-cli-snap/issues
+
+---
+
+## 📄 License
+
+- Upstream Linode CLI: [BSD-3-Clause License](https://github.com/linode/linode-cli/blob/main/LICENSE)
+- Snap Package: MIT
