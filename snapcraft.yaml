@@ -69,6 +69,7 @@ platforms:
 apps:
   linode-cli:
     command: bin/linode-cli
+    completer: completions/linode_cli.bash
     aliases:
       - linode
       - lin
@@ -82,3 +83,15 @@ parts:
     source: .
     python-packages:
       - linode-cli==$SNAPCRAFT_PROJECT_VERSION
+
+    override-build: |
+      craftctl default
+
+      # Generate shell completions (bash + fish; zsh is not supported upstream)
+      mkdir -p "$SNAPCRAFT_PART_INSTALL/completions"
+
+      "$SNAPCRAFT_PART_INSTALL/bin/linode-cli" completion bash \
+        > "$SNAPCRAFT_PART_INSTALL/completions/linode_cli.bash"
+
+      "$SNAPCRAFT_PART_INSTALL/bin/linode-cli" completion fish \
+        > "$SNAPCRAFT_PART_INSTALL/completions/linode-cli.fish"
