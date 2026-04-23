@@ -1,7 +1,7 @@
 ---
 name: linode-cli
 title: Linode CLI
-version: "5.66.0"
+version: "5.67.0"
 license: MIT
 summary: "Manage your Akamai Cloud resources from the terminal."
 description: |
