@@ -41,7 +41,7 @@ description: |
   ```bash
   linode-cli --help
   ```
-base: core24
+base: core26
 grade: stable
 confinement: strict
 source-code:
@@ -69,6 +69,8 @@ platforms:
 apps:
   linode-cli:
     command: bin/linode-cli
+    environment:
+      PYTHONPATH: $SNAP/lib/python3.14/site-packages
     completer: completions/linode_cli.bash
     aliases:
       - linode
@@ -81,6 +83,9 @@ parts:
   linode-cli:
     plugin: python
     source: .
+    stage-packages:
+      - python3-minimal
+      - python3-venv
     python-packages:
       - linode-cli==$SNAPCRAFT_PROJECT_VERSION
       - boto3
