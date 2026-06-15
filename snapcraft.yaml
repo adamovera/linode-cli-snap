@@ -83,6 +83,7 @@ parts:
     source: .
     python-packages:
       - linode-cli==$SNAPCRAFT_PROJECT_VERSION
+      - boto3
 
     override-build: |
       craftctl default
